@@ -1,3 +1,4 @@
+import 'package:finalblood/reg.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'dbhelper.dart';
@@ -13,7 +14,7 @@ class BloodDonorApp extends StatelessWidget {
       title: 'Blood Donor App',
       theme: ThemeData(primarySwatch: Colors.red),
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      home: Pagess(),
     );
   }
 }
