@@ -132,15 +132,18 @@ class _HomePageState extends State<HomePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ElevatedButton(
-                onPressed: () {
-                  print('Navigating to DonorForm');
-                  Navigator.push(
+                onPressed: () async {
+                  final result = await Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => DonorForm()),
                   );
+                  if (result == true) {
+                    _loadDonors(); // Reload the donors list if a new donor is added
+                  }
                 },
                 child: Text('Add Donor'),
               ),
+
               SizedBox(width: 10),
               ElevatedButton(
                 onPressed: () {
@@ -183,7 +186,7 @@ class _HomePageState extends State<HomePage> {
                         fontSize: 20,
                       ),
                     ),
-                    subtitle: Text(donor['phone'],style: TextStyle(color: Colors.white),),
+                    subtitle: Text(donor['email'],style: TextStyle(color: Colors.white),),
                     trailing:   IconButton(
                       icon: Icon(Icons.delete, color: Colors.white),
                       onPressed: () async {

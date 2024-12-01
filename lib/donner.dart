@@ -39,11 +39,19 @@ class _DonorFormState extends State<DonorForm> {
         'email': _emailController.text,
         'sex': _sex,
         'sex1': _sex1,
-        // 'last date': _dateController.text, // Include the date field here
+        // 'last date': _dateController.text,
+
       };
 
-      await DatabaseHelper().insertDonor(donor);
-      Navigator.pop(context, true);
+      try {
+        await DatabaseHelper().insertDonor(donor);
+        Navigator.pop(context, true);
+      } catch (e) {
+        print('Error saving donor: $e');
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Failed to save donor. Please try again.')),
+        );
+      }
 
     }
   }
